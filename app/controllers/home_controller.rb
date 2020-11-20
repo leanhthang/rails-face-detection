@@ -39,10 +39,6 @@ class HomeController < ApplicationController
     #       file: params[:cmnd_front]
     #     }
     #   )
-
-    respond_to do |format|
-      format.js
-      format.html
-    end
+    redirect_to "#{helpers.sp_base_url}#{request.referrer.split('?mbal=').last}"
   end
 end
