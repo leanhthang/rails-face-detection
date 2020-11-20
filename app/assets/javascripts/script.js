@@ -125,11 +125,12 @@ $(function(){
   .done(function(data) {
     console.log(data);
     $('#kh-name').html(data.data.basic_info.name);
-debugger
     if (data.data.ekyc.status == false) {
-      $('#previewCMNDFront').attr('src', file_cmnd_truoc.file_source);
-      $('#previewCMNDBack').attr('src', file_cmnd_sau.file_source);
       $('.img-thumbnail').removeClass('d-none')
+    } else {
+      $('#ekyc-label-is-confirm').removeClass('text-danger').addClass('text-success').html('(Đã xác thực)')
+      $('#previewCMNDFront').removeClass('d-none').attr('src', data.data.ekyc.cmnd_front);
+      $('#previewCMNDBack').removeClass('d-none').attr('src', data.data.ekyc.cmnd_back);
     }
   });
 });

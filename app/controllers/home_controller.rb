@@ -1,6 +1,5 @@
 class HomeController < ApplicationController
-  def index
-  end
+  def index; end
 
   def fetch_lead
     response = HTTParty.get(params[:sp_link])
@@ -30,7 +29,6 @@ class HomeController < ApplicationController
           file: params[:cmnd_back]
         }
       )
-    render  json: {message: 'successful'}
     # upload eKYC
     # response = HTTParty.post(sp_upload_url,
     #     multipart: true,
@@ -41,5 +39,10 @@ class HomeController < ApplicationController
     #       file: params[:cmnd_front]
     #     }
     #   )
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 end
