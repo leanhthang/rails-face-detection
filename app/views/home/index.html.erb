@@ -18,6 +18,9 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="row">
+              <div class="btn-redetect d-none col-12 mb-3 text-center ">
+                <div id="btn-redetect" class="btn btn-outline-secondary">Kiểm tra lại eKYC</div>
+              </div>
               <div class="col-6 text-center">
                 <div class="input-group">
                   <div class="custom-file">
@@ -54,7 +57,7 @@
               <div id="ekyc-alert-success" class="alert border border-success text-success d-none bg-light" role="alert">
                 Độ phù hợp <b id="ekyc-like-percent" class="text-danger"></b>
                 <div class="w-100">
-                  <div id="ekyc-btn-submit" class="btn btn-success mt-2">Submit</div>
+                  <div id="ekyc-btn-submit" onclick="submitForm()" class="btn btn-success mt-2">Submit</div>
                 </div>
               </div>
             </div>
@@ -122,4 +125,10 @@
     }
     $('#formCMND').submit();
   }
+
+  $('#btn-redetect').on('click', function(event) {
+    $('.btn-redetect').addClass('d-none');
+    $('.custom-file').removeClass('d-none');
+    /* Act on the event */
+  });
 </script>

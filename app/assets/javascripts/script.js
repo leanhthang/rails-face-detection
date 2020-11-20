@@ -110,13 +110,13 @@ function successDetector(distance) {
   $('#ekyc-like-percent').html(`~${percent}%`);
 }
 
-
 // const sp_url = 'http://122.248.226.101:3001';
 // const api_url = '//122.248.226.101:3000';
 const api_url = 'http://localhost:3000';
 const sp_lead_id = window.location.href.split('leads/informations/')[1];
 
 $(function(){
+  loading(true);
   $.ajax({
     type: 'POST',
     data: { sp_link: `${api_url}/api/v1/leads/${sp_lead_id}/ekyc_data` },
@@ -128,10 +128,14 @@ $(function(){
     if (data.data.ekyc.status == false) {
       $('.img-thumbnail').removeClass('d-none')
     } else {
+      $('.btn-redetect').removeClass('d-none');
+      $('.custom-file').addClass('d-none');
       $('#ekyc-label-is-confirm').removeClass('text-danger').addClass('text-success').html('(Đã xác thực)')
       $('#previewCMNDFront').removeClass('d-none').attr('src', data.data.ekyc.cmnd_front);
       $('#previewCMNDBack').removeClass('d-none').attr('src', data.data.ekyc.cmnd_back);
     }
+  }).always(function() {
+    loading(false);
   });
 });
 
