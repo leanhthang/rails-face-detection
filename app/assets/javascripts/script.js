@@ -146,3 +146,22 @@ function loading(visible) {
     $('.loading').addClass('d-none');
   }
 }
+
+function takepicture(video) {
+  canvas_camera = document.getElementById('canvas_camera');
+  var width = 400;
+  height = video.videoHeight / (video.videoWidth / width);
+
+  if (isNaN(height)) {
+      height = width / (4 / 3);
+  }
+  var context = canvas_camera.getContext('2d');
+  if (width && height) {
+      canvas_camera.width = width;
+      canvas_camera.height = height;
+      context.drawImage(video, 0, 0, width, height);
+
+      var data = canvas_camera.toDataURL('image/jpg');
+      $('#ekyc_image').val(data);
+  }
+}

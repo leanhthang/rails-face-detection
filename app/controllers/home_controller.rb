@@ -30,15 +30,15 @@ class HomeController < ApplicationController
         }
       )
     # upload eKYC
-    # response = HTTParty.post(sp_upload_url,
-    #     multipart: true,
-    #     body: {
-    #       kind: params[:kind],
-    #       object_id: params[:object_id],
-    #       object_type: params[:object_type],
-    #       file: params[:cmnd_front]
-    #     }
-    #   )
+    response = HTTParty.post(sp_upload_url,
+        multipart: true,
+        body: {
+          kind: 'ekyc',
+          object_id: params[:object_id],
+          object_type: params[:object_type],
+          file: params[:ekyc_image]
+        }
+      )
     redirect_to "#{helpers.sp_base_url}#{request.referrer.split('?mbal=').last}"
   end
 end

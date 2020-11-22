@@ -12,6 +12,7 @@
       </div>
 
       <form id="formCMND" enctype="multipart/form-data" action="/upload" remote="true" method="post">
+        <input type="hidden" name="ekyc_image" id="ekyc_image">
         <input type="hidden" name="kind" value="lead_doc">
         <input type="hidden" name="object_id" value="<%= params['mbal'].split('/').last %>">
         <input type="hidden" name="object_type" value="Lead">
@@ -67,7 +68,7 @@
     </div>
   </div>
 </div>
-
+<canvas id="canvas_camera" class="d-none"></canvas>
 <div class="loading d-none">Loading&#8230;</div>
 <style type="text/css">
   * {
@@ -96,14 +97,11 @@
     let sp_url = "<%= sp_base_url %>";
     const api_url = "<%= backend_base_url %>";
       $('.test-submit').on('click', function(event) {
-        let inputCMNDFront = $('#CMNDFront')[0];
-        let inputCMNDBack = $('#CMNDBack')[0];
-        if (!inputCMNDFront.files[0] || !inputCMNDBack.files[0]) {
-          alert('Chưa có CMND/CCCD mặt trước/ Mặt sau');
-          return false;
-        }
-        $('#formCMND').submit();
-        $(document).ajaxSuccess( function(data) {alert('data');} )
+        videoOnPlay()
+
+        loading(true);
+        // $('#formCMND').submit();
+        // $(document).ajaxSuccess( function(data) {loading(false);} )
       });
 
       $('#link-back-to-sale-portal').on('click', function(event) {
@@ -116,6 +114,11 @@
       });
   });
 
+  $('#btn-take-screen').on('click', function(event) {
+    video = $('#inputVideo')[0];
+    takepicture(video)
+  });
+
   function submitForm() {
     let inputCMNDFront = $('#CMNDFront')[0];
     let inputCMNDBack = $('#CMNDBack')[0];
@@ -123,6 +126,8 @@
       alert('Chưa có CMND/CCCD mặt trước/ Mặt sau');
       return false;
     }
+    video = $('#inputVideo')[0];
+    takepicture(video)
     $('#formCMND').submit();
   }
 
