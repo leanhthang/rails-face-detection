@@ -15,6 +15,7 @@ function uploadCMND(event, prev_img_id) {
 
 function videoOnPlay() {
   var video = $('#inputVideo')[0];
+  video.play();
   let canvas = $('#canvas')[0];
   let inputCMNDFront = $('#CMNDFront')[0];
   let inputCMNDBack = $('#CMNDBack')[0];
@@ -23,7 +24,6 @@ function videoOnPlay() {
     return false;
   }
   loadFaceapi();
-  video.play();
   loading(true);
   video.onplay = function() {
       const displaySize = { width: video.width, height: video.height }
@@ -67,7 +67,6 @@ function loadFaceapi() {
   ]).then(startVideo);
 }
 function startVideo() {var video = $('#inputVideo')[0];
-  video.play();
   navigator.getUserMedia(
     { video: {} },
     stream => video.srcObject = stream,
