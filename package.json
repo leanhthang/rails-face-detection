@@ -2,7 +2,10 @@
   "name": "webcam_rails",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "4.3.0"
+    "@rails/webpacker": "4.3.0",
+    "bootstrap": "^4.5.3",
+    "jquery": "^3.5.1",
+    "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
   "devDependencies": {

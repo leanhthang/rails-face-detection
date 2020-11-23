@@ -17,5 +17,6 @@ module WebcamRails
     # the framework and any gems in your application.
     config.gem "httparty"
     config.hosts << "mbal_sales_portal.ngrok.io"
+    config.hosts << "localhost"
   end
 end
