@@ -14,7 +14,7 @@
       <form id="formCMND" enctype="multipart/form-data" action="/upload" remote="true" method="post">
         <input type="hidden" name="ekyc_image" id="ekyc_image">
         <input type="hidden" name="kind" value="lead_doc">
-        <input type="hidden" name="object_id" value="<%= params['mbal'].split('/').last %>">
+        <input type="hidden" name="object_id" value="<%= params['mbal']&.split('/')&.last %>">
         <input type="hidden" name="object_type" value="Lead">
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
